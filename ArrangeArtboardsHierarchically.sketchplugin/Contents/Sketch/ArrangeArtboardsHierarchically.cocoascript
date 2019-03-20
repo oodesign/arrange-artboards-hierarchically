@@ -1,0 +1,124 @@
+var onRun = function(context) {
+  var page = context.document.currentPage();
+  var doc = context.document;
+  var horizontalGutter = 100;
+  var verticalGutter = 30;
+
+  var view;
+  if (MSApplicationMetadata.metadata().appVersion < 48) {
+    view = doc.currentView();
+  } else {
+    view = doc.contentDrawView();
+  }
+
+  var artboards = page.artboards();
+  artboards.sort(sortArtboardsFunction);
+
+
+
+  var parentArtboards = [];
+
+  artboards.forEach(function(artboard)
+  {
+    var firstNode = artboard.name().split("/")[0];
+    if(!containsKey(parentArtboards, firstNode))
+    {
+      var node = [firstNode,artboard];
+      parentArtboards.push(node);
+    }
+  });
+
+  parentArtboards.sort(sortFunction);
+
+  var x=0;
+  var y=0;
+
+  for(var i=0;i<parentArtboards.length;i++){
+    parentArtboards[i][1].frame().x = 0;
+    parentArtboards[i][1].frame().y = y;
+    var yAcc = getArtboardDescendants(parentArtboards[i],parentArtboards[i][0]+"/" ,parentArtboards[i][1].frame().width()+horizontalGutter,y);
+
+    if(yAcc > parentArtboards[i][1].frame().height())
+      y += yAcc;
+    else
+      y += parentArtboards[i][1].frame().height()
+
+    y+= verticalGutter;
+  }
+
+
+  view.centerLayersInCanvas();
+  context.document.showMessage("Hey ho! Artboards arranged!");
+
+
+  function getArtboardDescendants(artboard, nodeName, x, y){
+    var childrenArtboards = [];
+
+    artboards.forEach(function(artboard)
+    {
+      var startsbythis = artboard.name().startsWith(nodeName);
+      if(startsbythis)
+      {
+        var clippedName = artboard.name().replace(nodeName,"");
+        var firstNode = clippedName.split("/")[0]; 
+        if(!containsKey(childrenArtboards, firstNode))
+        {
+          var node = [firstNode,artboard];
+          childrenArtboards.push(node);
+        }
+      }
+    });
+
+    childrenArtboards.sort(sortFunction);
+
+    var incrementY = 0;
+
+    for(var i=0;i<childrenArtboards.length;i++){
+      childrenArtboards[i][1].frame().x = x;
+      childrenArtboards[i][1].frame().y = y + incrementY;
+
+      var yAcc = getArtboardDescendants(childrenArtboards[i], nodeName+childrenArtboards[i][0]+"/", x+childrenArtboards[i][1].frame().width()+horizontalGutter, y + incrementY);
+      
+      if(yAcc > (y+childrenArtboards[i][1].frame().height()))
+        incrementY += yAcc;
+      else
+        incrementY += childrenArtboards[i][1].frame().height()
+      
+      
+      incrementY+= verticalGutter;
+    }
+
+    return incrementY;
+  }
+
+  function containsKey(array, key)
+  {
+    var contains = false;
+    for(var i=0; i<array.length;i++)
+    {
+      if(array[i][0] == key) contains = true;
+    }
+    return contains;
+  }
+
+  function sortFunction(a, b) {
+      if (a[0] === b[0]) {
+          return 0;
+      }
+      else {
+          return (a[0] < b[0]) ? -1 : 1;
+      }
+  }
+
+  function sortArtboardsFunction(a, b) {
+      
+      if (a.name() === b.name()) {
+          return 0;
+      }
+      else {
+          return (a.name() < b.name()) ? -1 : 1;
+      }
+  }
+
+};
+          

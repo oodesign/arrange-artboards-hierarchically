@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Arrange Artboards Hierarchically</title>
+    <link>https://github.com/oodesign/arrange-artboards-hierarchically/blob/master/appcast.xml</link>
+    <description>Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern). </description>
+    <language>en</language>
+    
+     <item>
+        <title>Version 1.0.0</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern).</li>
+            </ul>
+          ]]>
+        </description>
+       <enclosure url="https://github.com/oodesign/arrange-artboards-hierarchically/archive/master.zip" sparkle:version="1.0.0"/>
+      </item>
+ </channel>
+</rss>
