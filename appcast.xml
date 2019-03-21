@@ -5,7 +5,17 @@
     <link>https://github.com/oodesign/arrange-artboards-hierarchically/blob/master/appcast.xml</link>
     <description>Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern). </description>
     <language>en</language>
-    
+      <item>
+        <title>Version 1.0.1</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Fix to make it non dependant on having a full hierarchy structure (all levels)</li>
+            </ul>
+          ]]>
+        </description>
+       <enclosure url="https://github.com/oodesign/arrange-artboards-hierarchically/archive/master.zip" sparkle:version="1.0.1"/>
+      </item>
      <item>
         <title>Version 1.0.0</title>
         <description>
