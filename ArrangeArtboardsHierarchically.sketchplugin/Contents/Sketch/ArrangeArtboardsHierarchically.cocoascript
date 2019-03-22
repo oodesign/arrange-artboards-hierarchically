@@ -1,135 +1,20 @@
-var onRun = function(context) {
-  var page = context.document.currentPage();
-  var doc = context.document;
-  var horizontalGutter = 100;
-  var verticalGutter = 40;
-  var majorVerticalGutter = 100;
+@import "functions.js";
 
-  var view;
-  if (MSApplicationMetadata.metadata().appVersion < 48) {
-    view = doc.currentView();
-  } else {
-    view = doc.contentDrawView();
-  }
+var horizontalGutter = 100;
+var verticalGutter = 30;
+var alreadyProcessed = [];
+var artboardList = []];
 
-  var artboardList = page.artboards();
-  artboardList.sort(sortArtboardsFunction);
-
-  var alreadyProcessed=[];
-
+var ArrangeArtboardsInColumns = function(context) {
+  artboardList = getFullArtboardList(context);
   DrawArtboards(artboardList,0,0);
-  view.centerLayersInCanvas();
-  context.document.showMessage("Hey ho! Artboards arranged!");
+  zoomToView(context);
+  ShowConfirmation(context,"Hey ho! Artboards arranged!");
+}
 
-  function DrawArtboards(artboards,x,y){
-    var incrementY = 0;
-
-
-    for(var i=0;i<artboards.length;i++){
-      if(alreadyProcessed.indexOf(artboards[i])<0)
-      {
-        
-        //console.log(who+": Allocating "+artboards[i].name()+" to ("+x+","+(y+incrementY)+")"); 
-
-        var yAcc=0;
-        var descendants=[];
-        var brothers=[];
-        var hadChildren=false;
-        var hadBrothers=false; 
-        
-        artboards[i].frame().x = x;
-        artboards[i].frame().y = y+incrementY;
-
-
-        var nodes = artboards[i].name().split("/");
-        var prefix = "";
-        var fullPrefix="";
-        for(var j=0;j<nodes.length;j++){
-          if(j<nodes.length-1)
-            prefix += nodes[j]+"/";
-          
-          fullPrefix += nodes[j]+"/";
-        }
-
-        descendants = getDescendants(fullPrefix);
-        brothers = getBrothers(prefix);
-
-
-        alreadyProcessed.push(artboards[i]);
-
-        var yDescendants = DrawArtboards(descendants, x+artboards[i].frame().width()+horizontalGutter, y+incrementY);
-
-        if(yDescendants > artboards[i].frame().height())
-          incrementY += yDescendants;
-        else
-          incrementY += artboards[i].frame().height();
-      
-
-        if(i<(artboards.length-1))
-          incrementY += verticalGutter;
-
-        
-        var yBrothers = DrawArtboards(brothers, x, y+incrementY);
-        incrementY += yBrothers
-        if(i<(artboards.length-1) && (brothers.length>0))
-          incrementY += verticalGutter;
-      
-      }
-    }
-
-    return incrementY;
-  }
-
-
-
-
-  function getDescendants(nodeName){
-    var descendants = [];
-    
-    artboardList.forEach(function(artboard)
-    {
-      var startsbythis = artboard.name().startsWith(nodeName);
-      if(startsbythis)
-      {
-          descendants.push(artboard);
-      }
-    });
-
-    descendants.sort(sortArtboardsFunction);
-    
-    //console.log("Descendants of: "+nodeName);
-    //descendants.forEach(function(artboard){ console.log("  "+artboard.name()); });
-    return descendants;
-  }
-
-  function getBrothers(nodeName){
-    var brothers = [];
-    var slashCount =  nodeName.split("/").length;  
-    artboardList.forEach(function(artboard)
-    {
-      var startsbythis = artboard.name().startsWith(nodeName);
-      if(startsbythis &&  artboard.name().split("/").length == slashCount)
-      {
-          brothers.push(artboard);
-      }
-    });
-
-    brothers.sort(sortArtboardsFunction);
-
-    //console.log("Brothers of: "+nodeName);
-    //brothers.forEach(function(artboard){ console.log("  "+artboard.name()); });
-    return brothers;
-  }
-
-  function sortArtboardsFunction(a, b) {
-      
-      if (a.name() === b.name()) {
-          return 0;
-      }
-      else {
-          return (a.name() < b.name()) ? -1 : 1;
-      }
-  }
-
-};
-          
+var ArrangeArtboardsInRows = function(context) {
+  artboardList = getFullArtboardList(context);
+  DrawArtboardsRows(artboardList,0,0);
+  zoomToView(context);
+  ShowConfirmation(context,"Hey ho! Artboards arranged!");
+}
