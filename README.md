@@ -8,7 +8,11 @@ Sketch.app plugin to arrange artboards hierarchically depending on their name (b
 
 Simply run "Arrange Artboards Hierarchically" from the Plugins menu.
 
-The plugin will automatically arrange all artboards in the selected page according to their name.
+Arrange Artboards Hierarchically plugin will automatically arrange all artboards in the selected page according to their name (based on the Sketch Slash naming pattern). Something like this:
+
+<img src="https://github.com/oodesign/arrange-artboards-hierarchically/blob/master/Images/TextHierarchySample.png" alt="Text formatted visualization of how the plugin will display a specific hierarchy"/>
+
+I’d recommend using the vertical approach (arranging them in columns), but there’s an option to have them represented horizontally (in rows) too.
 <br/><br/><br/>
 
 <img src="https://github.com/oodesign/arrange-artboards-hierarchically/blob/master/Images/ArrangeHierarchically.gif" alt="How Arrange Artboards Hierarchically organizes artboards according to real hierarchy."/>
