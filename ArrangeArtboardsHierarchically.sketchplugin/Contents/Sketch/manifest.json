@@ -19,15 +19,50 @@
       "handlers" : {
         "run" : "ArrangeArtboardsInRows"
       }
+    },
+    {
+      "script" : "Help.cocoascript",
+      "name" : "Documentation",
+      "identifier": "documentation",
+      "handlers" : {
+        "run" : "documentation"
+      }
+    },
+    {
+      "script" : "Help.cocoascript",
+      "name" : "Report issue or an idea",
+      "identifier": "report_issue",
+      "handlers" : {
+        "run" : "report_issue"
+      }
+    },
+    {
+      "script" : "Help.cocoascript",
+      "name" : "Donate",
+      "identifier": "donate",
+      "handlers" : {
+        "run" : "donate"
+      }
     }
   ],
   "menu" : {
     "title" : "Arrange Artboards Hierarchically",
-    "items" : ["arrange-artboards-hierarchically-columns","arrange-artboards-hierarchically-rows"]
+    "items" : [
+      "arrange-artboards-hierarchically-columns",
+      "arrange-artboards-hierarchically-rows",
+      {
+        "title": "Help",
+        "items": [
+          "documentation",
+          "report_issue",
+          "donate"
+        ]
+      }    
+    ]
   },
 
   "identifier" : "arrange-artboards-hierarchically-ca89124621745189",
-  "version" : "1.1.1",
+  "version" : "1.1.2",
   "description" : "Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern).",
   "authorEmail" : "oodesignux@gmail.com",
   "author": "oodesign",

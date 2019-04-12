@@ -6,7 +6,18 @@
     <description>Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern). </description>
     <language>en</language>
       <item>
-        <title>Version 1.1.1</title>
+        <title>Version 1.1.2</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Added Help to Menu</li>
+            </ul>
+          ]]>
+        </description>
+       <enclosure url="https://github.com/oodesign/arrange-artboards-hierarchically/archive/master.zip" sparkle:version="1.1.2"/>
+      </item>
+      <item>
+        <title>Version 1.1.0</title>
         <description>
           <![CDATA[
             <ul>
