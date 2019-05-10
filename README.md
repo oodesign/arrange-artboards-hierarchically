@@ -12,6 +12,9 @@ Arrange Artboards Hierarchically plugin will automatically arrange all artboards
 
 <img src="https://github.com/oodesign/arrange-artboards-hierarchically/blob/master/Images/TextHierarchySample.png" alt="Text formatted visualization of how the plugin will display a specific hierarchy"/>
 
+Note that, for now, artboards need to have a "direct parent artboard" in order to work properly.
+In the above example, if the "A1/S1" artboard didn't exist, all of their childs would be arranged directly as "A1" children, at the same level as "A1/S2", "A1/S3", and "A1/S4".
+
 I’d recommend using the vertical approach (arranging them in columns), but there’s an option to have them represented horizontally (in rows) too.
 <br/><br/><br/>
 
