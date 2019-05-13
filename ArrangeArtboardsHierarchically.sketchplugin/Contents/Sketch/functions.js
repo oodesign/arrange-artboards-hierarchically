@@ -17,7 +17,7 @@ function DrawArtboards(artboards,x,y){
         artboards[i].frame().y = y+incrementY;
 
 
-        var nodes = artboards[i].name().split("/");
+        var nodes = artboards[i].name().split("/").map(name => name.trim());
         var prefix = "";
         var fullPrefix="";
         for(var j=0;j<nodes.length;j++){
@@ -75,7 +75,7 @@ function DrawArtboardsRows(artboards,x,y){
         artboards[i].frame().y = y;
 
 
-        var nodes = artboards[i].name().split("/");
+        var nodes = artboards[i].name().split("/").map(name => name.trim());
         var prefix = "";
         var fullPrefix="";
         for(var j=0;j<nodes.length;j++){
@@ -117,10 +117,15 @@ function DrawArtboardsRows(artboards,x,y){
 
 function getDescendants(nodeName){
     var descendants = [];
-
     artboardList.forEach(function(artboard)
     {
-        var startsbythis = artboard.name().startsWith(nodeName);
+        var compareName ="";
+        var nodes = artboard.name().split("/").map(name => name.trim());
+        for(var i=0;i<nodes.length;i++){
+            compareName +=nodes[i]+"/";
+        }
+
+        var startsbythis = compareName.startsWith(nodeName);
         if(startsbythis)
         {
             descendants.push(artboard);

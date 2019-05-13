@@ -62,7 +62,7 @@
   },
 
   "identifier" : "arrange-artboards-hierarchically-ca89124621745189",
-  "version" : "1.1.2",
+  "version" : "1.1.3",
   "description" : "Arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern).",
   "authorEmail" : "oodesignux@gmail.com",
   "author": "oodesign",
