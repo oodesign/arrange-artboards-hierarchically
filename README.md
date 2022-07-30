@@ -2,7 +2,9 @@
 
 # Arrange Artboards Hierarchically (Sketch plugin)
 
-Sketch.app plugin to arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern).
+Sketch plugin to arrange artboards hierarchically depending on their name (based on the Sketch Slash naming pattern).
+
+<b> ⚠️  Arrange artboards hierarchically is not supported anymore </b>
 
 ## Arrange artboards hierarchically
 
